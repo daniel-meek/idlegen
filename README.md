@@ -9,11 +9,14 @@
  
 ## Screenshots
 
-| Crypto Miner | SOCKS5 Proxy Scanner |
-| :---: | :---: |
-| ![crypto](assets/crypto.gif) | ![proxy](assets/proxy.gif) |
-| **Network DPI** | **ML Ops** |
-| ![network](assets/network.gif) | ![ml](assets/ml.gif) |
+<div align="center">
+  <img src="assets/crypto.gif" width="48%" alt="Crypto module" />
+  <img src="assets/proxy.gif" width="48%" alt="Proxy module" />
+  <br>
+  <img src="assets/network.gif" width="48%" alt="Network module" />
+  <img src="assets/ml.gif" width="48%" alt="ML module" />
+</div>
+
 ## Usage
 
 Run the executable followed by the module name you wish to simulate:
@@ -62,11 +65,11 @@ Since `lookbusy` uses standard C libraries, you only need `gcc` to get it runnin
 ### v0.0.2-alpha - 2026-04-05
 
 - Overhaul for all modules.
-  - package: Added sticky [Working] progress bars and exact apt styling.
-  - network: Rebuilt as a tcpdump-style packet sniffer with 16-byte hex dumps.
-  - ml: Introduced dynamic architectures (Deep Learning vs. Ensembles) and colorized training metrics.
-  - crypto: Switched to a high-speed multi-GPU threading simulation.
-  - proxy: Increased concurrency payload to simulate a real masscan operation.
+  - `package`: Added sticky [Working] progress bars and exact apt styling.
+  - `network`: Rebuilt as a tcpdump-style packet sniffer with 16-byte hex dumps.
+  - `ml`: Introduced dynamic architectures (Deep Learning vs. Ensembles) and colorized training metrics.
+  - `crypto`: Switched to a high-speed multi-GPU threading simulation.
+  - `proxy`: Increased concurrency payload to simulate a real masscan operation.
 - Fixed speed flag bugs.
 
 ### v0.0.1-alpha - 2026-04-05
