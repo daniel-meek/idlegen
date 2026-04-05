@@ -10,11 +10,11 @@
 ## Screenshots
 
 <div align="center">
-  <img src="assets/crypto.gif" width="80%" alt="Crypto module" />
+  <img src="assets/crypto.gif" width="90%" alt="Crypto module" />
   <br>
-  <img src="assets/proxy.gif" width="80%" alt="Proxy module" />
+  <img src="assets/proxy.gif" width="90%" alt="Proxy module" />
   <br>
-  <img src="assets/network.gif" width="80%" alt="Network module" />
+  <img src="assets/network.gif" width="90%" alt="Network module" />
 </div>
 
 ## Usage
@@ -38,6 +38,8 @@ To stop the text generation, simply use `CTRL+C` to "abort the process!".
 
 ### Speed Settings
 
+* `--slower` - 0.25x speed
+* `--slow` - 0.5x speed
 * `--normal` - 1x speed
 * `--fast` - 2x speed
 * `--slow` - 10x speed
@@ -71,6 +73,7 @@ Since `lookbusy` uses standard C libraries, you only need `gcc` to get it runnin
   - `crypto`: Switched to a high-speed multi-GPU threading simulation.
   - `proxy`: Increased concurrency payload to simulate a real masscan operation.
 - Fixed speed flag bugs.
+- Added `--help`, `--about`, and `--version`
 
 ### v0.0.1-alpha - 2026-04-05
 - Initial commit with 5 modules, speed settings, and simple error handling.
