@@ -799,12 +799,18 @@ ActivityModule modules[] = {
 int num_modules = sizeof(modules) / sizeof(modules[0]);
 
 void print_help(const char *prog_name) {
-    printf("Usage: %s <module> [speed]\n\n", prog_name);
+    printf("Usage: %s <module> [--speed <float>]\n\n", prog_name);
     printf("Available modules:\n");
     for (int i = 0; i < num_modules; i++) {
         printf("  %-10s : %s\n", modules[i].name, modules[i].description);
     }
-    printf("  %-10s : Pick a random module\n", "random");
+    printf("  %-10s : Pick a random module\n\n", "random");
+    printf("Options:\n");
+    printf("  --speed, -s   : Set execution speed multiplier\n");
+    printf("                  Limits: [0.01 to 100.0]. Default: 1.0\n");
+    printf("  --version, -v : Show version information\n");
+    printf("  --about, -a   : Show author and license info\n");
+    printf("  --help, -h    : Show this help menu\n");
 }
 
 void print_about() {
@@ -844,20 +850,49 @@ int main(int argc, char *argv[]) {
 
     const char *target_module = NULL;
 
-    // Loop through arguments to find speed flags and the module name
+    // Loop through arguments to find flags and the module name
     for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "--normal") == 0) {
-            speed_factor = 1.0; // normal
-        } else if (strcmp(argv[i], "--fast") == 0) {
-            speed_factor = 0.5; // 2x faster
-        } else if (strcmp(argv[i], "--faster") == 0) {
-            speed_factor = 0.1; // 10x faster
-        } else if (strcmp(argv[i], "--slow") == 0) {
-            speed_factor = 2.0; // 2x slower
-        } else if (strcmp(argv[i], "--slower") == 0) {
-            speed_factor = 4.0; // 4x slower
-        } else {
-            // If it's not a speed flag, it's a module
+        if (strcmp(argv[i], "--version") == 0 || strcmp(argv[i], "-v") == 0) {
+            printf("lookbusy %s\n", APP_VERSION);
+            return 0;
+        } 
+        else if (strcmp(argv[i], "--about") == 0 || strcmp(argv[i], "-a") == 0) {
+            print_about();
+            return 0;
+        } 
+        else if (strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0) {
+            print_help(argv[0]);
+            return 0;
+        } 
+        else if (strcmp(argv[i], "--speed") == 0 || strcmp(argv[i], "-s") == 0) {
+            // Ensure there is a value provided after the --speed flag
+            if (i + 1 < argc) {
+                float input_speed = atof(argv[i + 1]);
+                
+                // Clamp the speed to our safe bounds
+                if (input_speed < 0.01) {
+                    input_speed = 0.01;
+                    printf("[%sERROR%s] Speed too low, clamping to %.2f\n", CLR_RED, CLR_RESET, input_speed); // Fixed typo & removed invalid ':'
+                    msleep(2000);
+                }
+                if (input_speed > 100.0) {
+                    input_speed = 100.0;
+                    printf("[%sERROR%s] Speed too high, clamping to %.2f\n", CLR_RED, CLR_RESET, input_speed);
+                    msleep(2000); 
+                }
+
+                // Invert it for msleep
+                speed_factor = 1.0 / input_speed; 
+                
+                i++; // Skip over the numeric value
+            } else {
+                printf("Error: --speed requires a numeric value.\n");
+                print_help(argv[0]);
+                return 1;
+            }
+        } 
+        else {
+            // If it's not a known flag, it must be the target module
             target_module = argv[i];
         }
     }

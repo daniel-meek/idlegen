@@ -4,7 +4,7 @@
 
 `lookbusy` is a lightweight Linux terminal utility that simulates high-activity "hacker-style" logs. Usefull for background aesthetics or looking busy when someone walks past your desk.
 
-* **Current Version:** `v0.0.2-alpha` 
+* **Current Version:** `v0.0.3-experimental` 
 * **Status:** `Experimental` - This utility is in early development. Features may be added, removed, or broken at any time.
  
 ## Screenshots
@@ -38,11 +38,7 @@ To stop the text generation, simply use `CTRL+C` to "abort the process!".
 
 ### Speed Settings
 
-* `--slower` - 0.25x speed
-* `--slow` - 0.5x speed
-* `--normal` - 1x speed
-* `--fast` - 2x speed
-* `--slow` - 10x speed
+* `-s, --speed [float]` - Sets the speed of the wait function.
 
 ## Installation
 
@@ -64,7 +60,14 @@ Since `lookbusy` uses standard C libraries, you only need `gcc` to get it runnin
 
 ## Changelog
 
-### v0.0.2-alpha - 2026-04-05
+### v0.0.3-experimental - 2026-04-09
+
+- Implemented variable speed settings.
+- Added short flag for help `-h, --help`, about `-a, --about`, and version `-v, --version`.
+- Added variable lenght to final hex dump row.
+- Rebranded from "alpha" to "experimental" to better reflect the project state.
+
+### v0.0.2-experimental - 2026-04-05
 
 - Overhaul for all modules.
   - `package`: Added sticky [Working] progress bars and exact apt styling.
@@ -75,7 +78,7 @@ Since `lookbusy` uses standard C libraries, you only need `gcc` to get it runnin
 - Fixed speed flag bugs.
 - Added `--help`, `--about`, and `--version`
 
-### v0.0.1-alpha - 2026-04-05
+### v0.0.1-experimental - 2026-04-05
 - Initial commit with 5 modules, speed settings, and simple error handling.
 
 ## Author
